@@ -1,11 +1,22 @@
 # Appended fragment from meta-mender-community/meta-mender-clearfog/templates
 
-# Uncomment the lines below depending on the model
-
 # Supported Machine Types:
-# - clearfog-base
-# - clearfog-pro
-MACHINE ?= "clearfog-base"
+# - clearfog
+# - clearfog-gtr-s4
+# - clearfog-gtr-l8
+MACHINE ?= "clearfog"
+
+# You have to manually specify the DTB file to use with Mender
+
+# Supported models:
+
+#    armada-388-clearfog.dtb        - Clearfog
+#    armada-388-clearfog-base.dtb   - Clearfog Base
+#    armada-388-clearfog-pro.dtb    - Clearfog Pro
+#    armada-388-clearfog-gtr-s4.dtb - Clearfog GTR S4
+#    armada-388-clearfog-gtr-l8.dtb - Clearfog GTR L8
+#
+MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
 
 # Set the storage medium
 # Refer: https://github.com/mirzak/meta-clearfog/blob/master/conf/machine/include/clearfog-common.inc#L8-L18
@@ -16,6 +27,7 @@ IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
 MENDER_IMAGE_BOOTLOADER_FILE = "u-boot-${MACHINE}.bin"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "1"
 
+MENDER_BOOT_PART_SIZE_MB = "0"
+
 MENDER_FEATURES_ENABLE_append = " mender-uboot mender-image-sd"
 MENDER_FEATURES_DISABLE_append = " mender-grub mender-image-uefi"
-
