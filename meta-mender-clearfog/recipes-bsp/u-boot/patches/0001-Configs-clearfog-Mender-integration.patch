@@ -1,0 +1,29 @@
+From 198bee166c6d569f29d1e4ccc1dcaa3b033315ed Mon Sep 17 00:00:00 2001
+From: Wayne Adams <wadams@davey.com.au>
+Date: Fri, 18 Oct 2019 13:50:02 +1100
+Subject: [PATCH] Configs clearfog Mender integration
+
+---
+ include/configs/clearfog.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/include/configs/clearfog.h b/include/configs/clearfog.h
+index 9d20a5e88c..5f08349929 100644
+--- a/include/configs/clearfog.h
++++ b/include/configs/clearfog.h
+@@ -17,6 +17,12 @@
+  */
+ #define CONFIG_SYS_TCLK		250000000	/* 250MHz */
+ 
++/*
++ * Extra configuration for Mender integration
++ */
++#define CONFIG_BOOTCOUNT_LIMIT
++#define CONFIG_BOOTCOUNT_ENV
++
+ /*
+  * Commands configuration
+  */
+-- 
+2.23.0.windows.1
+
