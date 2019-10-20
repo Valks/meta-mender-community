@@ -6,17 +6,7 @@
 # - clearfog-gtr-l8
 MACHINE ?= "clearfog"
 
-# You have to manually specify the DTB file to use with Mender
-
-# Supported models:
-
-#    armada-388-clearfog.dtb        - Clearfog
-#    armada-388-clearfog-base.dtb   - Clearfog Base
-#    armada-388-clearfog-pro.dtb    - Clearfog Pro
-#    armada-388-clearfog-gtr-s4.dtb - Clearfog GTR S4
-#    armada-388-clearfog-gtr-l8.dtb - Clearfog GTR L8
-#
-#MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
+KERNEL_DEVICETREE = "armada-388-clearfog.dtb"
 
 #IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
 
@@ -25,3 +15,12 @@ MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "1"
 
 MENDER_FEATURES_ENABLE_append = " mender-uboot mender-image-sd"
 MENDER_FEATURES_DISABLE_append = " mender-grub mender-image-uefi"
+
+IMAGE_BOOT_FILES = "zImage ${KERNEL_DEVICETREE} boot.scr"
+
+IMAGE_FSTYPES = "tar.bz2 ext4 wic.gz"
+
+MACHINE_FEATURES = "ext2 ext3 ipsec nfs pci smbfs usbgadget usbhost vfat"
+
+WKS_FILE = "clearfog.wks"
+WKS_FILE_DEPENDS = "virtual/bootloader clearfog-u-boot-scr"
