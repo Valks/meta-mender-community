@@ -1,20 +1,23 @@
-From 07bb2488ba315bf3609bd15da54ee14151623950 Mon Sep 17 00:00:00 2001
+From 045ffa55479d1a0a092b870345558a6c21896f21 Mon Sep 17 00:00:00 2001
 From: Wayne Adams <wadams@davey.com.au>
 Date: Tue, 22 Oct 2019 10:00:39 +1100
 Subject: [PATCH] Add autoboot abort plus basic tools.
 
 ---
- configs/clearfog_defconfig | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ configs/clearfog_defconfig | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
 diff --git a/configs/clearfog_defconfig b/configs/clearfog_defconfig
-index e1c5a1fa13..70eb91c201 100644
+index c8d081cf9d..0ed8af5cfb 100644
 --- a/configs/clearfog_defconfig
 +++ b/configs/clearfog_defconfig
-@@ -63,3 +63,21 @@ CONFIG_KIRKWOOD_SPI=y
- CONFIG_USB=y
- CONFIG_DM_USB=y
- CONFIG_USB_XHCI_HCD=y
+@@ -67,4 +67,22 @@ CONFIG_ENV_IS_IN_MMC=y
+ CONFIG_CMD_EXT4=y
+ CONFIG_CMD_FS_GENERIC=y
+ CONFIG_BOOTCOUNT_LIMIT=y
+-CONFIG_BOOTCOUNT_ENV=y
+\ No newline at end of file
++CONFIG_BOOTCOUNT_ENV=y
 +CONFIG_SYS_STDIO_DEREGISTER=y
 +CONFIG_SYS_PROMPT=">> "
 +CONFIG_AUTOBOOT_KEYED=y
