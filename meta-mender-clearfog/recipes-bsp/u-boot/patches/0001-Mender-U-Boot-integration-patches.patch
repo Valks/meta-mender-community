@@ -1,28 +1,28 @@
-From 88cd2f9de4e25fb99af8fc9028c21b25ed6d74fd Mon Sep 17 00:00:00 2001
+From 2206dc3a364676bb388ee4d8351a00059aefce4c Mon Sep 17 00:00:00 2001
 From: Wayne Adams <wadams@davey.com.au>
-Date: Tue, 22 Oct 2019 07:29:44 +1100
-Subject: [PATCH] Mender integration patches
+Date: Tue, 22 Oct 2019 07:51:47 +1100
+Subject: [PATCH] Mender U-Boot integration patches.
 
 ---
  configs/clearfog_defconfig      | 7 ++++++-
- include/config_defaults.h       | 6 ++++++
+ include/config_defaults.h       | 7 +++++++
  include/config_distro_bootcmd.h | 1 -
- include/configs/clearfog.h      | 9 ---------
- 4 files changed, 12 insertions(+), 11 deletions(-)
+ include/configs/clearfog.h      | 3 ---
+ 4 files changed, 13 insertions(+), 5 deletions(-)
 
 diff --git a/configs/clearfog_defconfig b/configs/clearfog_defconfig
-index ebfe3cf158..7518684917 100644
+index e1c5a1fa13..c8d081cf9d 100644
 --- a/configs/clearfog_defconfig
 +++ b/configs/clearfog_defconfig
-@@ -40,7 +40,6 @@ CONFIG_CMD_CACHE=y
+@@ -36,7 +36,6 @@ CONFIG_CMD_CACHE=y
  CONFIG_CMD_TIME=y
  # CONFIG_SPL_PARTITION_UUIDS is not set
  CONFIG_DEFAULT_DEVICE_TREE="armada-388-clearfog"
 -CONFIG_ENV_IS_IN_MMC=y
  CONFIG_NET_RANDOM_ETHADDR=y
  CONFIG_SPL_OF_TRANSLATE=y
- CONFIG_AHCI_MVEBU=y
-@@ -70,3 +69,9 @@ CONFIG_KIRKWOOD_SPI=y
+ CONFIG_SCSI_AHCI=y
+@@ -63,3 +62,9 @@ CONFIG_KIRKWOOD_SPI=y
  CONFIG_USB=y
  CONFIG_DM_USB=y
  CONFIG_USB_XHCI_HCD=y
@@ -34,14 +34,15 @@ index ebfe3cf158..7518684917 100644
 +CONFIG_BOOTCOUNT_ENV=y
 \ No newline at end of file
 diff --git a/include/config_defaults.h b/include/config_defaults.h
-index d211a41ef2..b7893fb7e7 100644
+index 7ef928bbe1..f0fd637f49 100644
 --- a/include/config_defaults.h
 +++ b/include/config_defaults.h
-@@ -10,3 +10,9 @@
- #define _CONFIG_DEFAULTS_H_
+@@ -20,3 +20,10 @@
+ #define CONFIG_ZLIB 1
  
  #endif
 +
++/* Mender Integration */
 +#define CONFIG_ENV_SIZE 0x20000
 +#define CONFIG_ENV_OFFSET 0x800000
 +#define CONFIG_ENV_OFFSET_REDUND 0x1000000
@@ -49,10 +50,10 @@ index d211a41ef2..b7893fb7e7 100644
 +#define CONFIG_SYS_MMC_ENV_PART 0
 \ No newline at end of file
 diff --git a/include/config_distro_bootcmd.h b/include/config_distro_bootcmd.h
-index 3570a32dff..20e9dc1bea 100644
+index 555efb7433..3fac7560b8 100644
 --- a/include/config_distro_bootcmd.h
 +++ b/include/config_distro_bootcmd.h
-@@ -485,7 +485,6 @@
+@@ -428,7 +428,6 @@
  		"done\0"
  
  #ifndef CONFIG_BOOTCOMMAND
@@ -61,23 +62,10 @@ index 3570a32dff..20e9dc1bea 100644
  
  #endif  /* _CONFIG_CMD_DISTRO_BOOTCMD_H */
 diff --git a/include/configs/clearfog.h b/include/configs/clearfog.h
-index 5f08349929..2f24b9379c 100644
+index 77ab6caf52..7b20df4bb2 100644
 --- a/include/configs/clearfog.h
 +++ b/include/configs/clearfog.h
-@@ -17,12 +17,6 @@
-  */
- #define CONFIG_SYS_TCLK		250000000	/* 250MHz */
- 
--/*
-- * Extra configuration for Mender integration
-- */
--#define CONFIG_BOOTCOUNT_LIMIT
--#define CONFIG_BOOTCOUNT_ENV
--
- /*
-  * Commands configuration
-  */
-@@ -38,16 +32,13 @@
+@@ -39,16 +39,13 @@
  #define CONFIG_ENV_MIN_ENTRIES		128
  
  /* Environment in MMC */
