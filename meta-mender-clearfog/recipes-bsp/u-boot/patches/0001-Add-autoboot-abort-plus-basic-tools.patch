@@ -1,0 +1,39 @@
+From 07bb2488ba315bf3609bd15da54ee14151623950 Mon Sep 17 00:00:00 2001
+From: Wayne Adams <wadams@davey.com.au>
+Date: Tue, 22 Oct 2019 10:00:39 +1100
+Subject: [PATCH] Add autoboot abort plus basic tools.
+
+---
+ configs/clearfog_defconfig | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/configs/clearfog_defconfig b/configs/clearfog_defconfig
+index e1c5a1fa13..70eb91c201 100644
+--- a/configs/clearfog_defconfig
++++ b/configs/clearfog_defconfig
+@@ -63,3 +63,21 @@ CONFIG_KIRKWOOD_SPI=y
+ CONFIG_USB=y
+ CONFIG_DM_USB=y
+ CONFIG_USB_XHCI_HCD=y
++CONFIG_SYS_STDIO_DEREGISTER=y
++CONFIG_SYS_PROMPT=">> "
++CONFIG_AUTOBOOT_KEYED=y
++CONFIG_AUTOBOOT_PROMPT="Autoboot in %d seconds\n"
++# CONFIG_AUTOBOOT_ENCRYPTION is not set
++CONFIG_AUTOBOOT_DELAY_STR=""
++CONFIG_AUTOBOOT_STOP_STR=""
++# CONFIG_AUTOBOOT_KEYED_CTRLC is not set
++# CONFIG_CMD_BMP is not set
++# CONFIG_CMD_CLS is not set
++CONFIG_CMD_MVEBU_BUBT=y
++# CONFIG_PCH_GBE is not set
++CONFIG_DM_PCI=y
++# CONFIG_DM_PCI_COMPAT is not set
++# CONFIG_PCIE_ECAM_GENERIC is not set
++# CONFIG_PCI_XILINX is not set
++# CONFIG_PCIE_LAYERSCAPE is not set
++# CONFIG_PCIE_INTEL_FPGA is not set
+\ No newline at end of file
+-- 
+2.23.0.windows.1
+

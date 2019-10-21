@@ -2,7 +2,10 @@ BOOTENV_SIZE = "0x2000"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/patches:"
 
-SRC_URI += "file://0001-Mender-U-Boot-integration-patches.patch"
+SRC_URI += " \
+    file://0001-Mender-U-Boot-integration-patches.patch \
+    file://0001-Add-autoboot-abort-plus-basic-tools.patch \
+    "
 
 SRC_URI_remove = "file://0003-Integration-of-Mender-boot-code-into-U-Boot.patch"
 
