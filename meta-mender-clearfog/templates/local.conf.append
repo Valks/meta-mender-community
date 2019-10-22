@@ -8,8 +8,6 @@ MACHINE ?= "clearfog"
 
 KERNEL_DEVICETREE = "armada-388-clearfog.dtb"
 
-#IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
-
 MENDER_IMAGE_BOOTLOADER_FILE = "u-boot-${MACHINE}.bin"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "1"
 

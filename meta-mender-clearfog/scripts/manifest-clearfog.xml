@@ -3,10 +3,10 @@
   <default sync-j="4" revision="warrior"/>
 
   <remote fetch="git://git.yoctoproject.org"        name="yocto"/>
-  <remote fetch="https://github.com/SolidRun"         name="solidrun"/>
+  <remote fetch="https://github.com/Valks"         name="solidrun"/>
 
   <project name="poky" remote="yocto" revision="warrior" path="sources/poky"/>
-  <project name="meta-clearfog" remote="solidrun" revision="master" path="sources/meta-clearfog"/>
+  <project name="meta-clearfog" remote="solidrun" revision="warrior" path="sources/meta-clearfog"/>
   
   <include name="scripts/mender.xml"/>
 
