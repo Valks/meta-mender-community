@@ -6,7 +6,7 @@
   <remote fetch="https://github.com/Valks"         name="solidrun"/>
 
   <project name="poky" remote="yocto" revision="warrior" path="sources/poky"/>
-  <project name="meta-clearfog" remote="solidrun" revision="warrior" path="sources/meta-clearfog"/>
+  <project name="meta-clearfog" remote="solidrun" revision="storage-selection" path="sources/meta-clearfog"/>
   
   <include name="scripts/mender.xml"/>
 
