@@ -1,3 +1,13 @@
+# https://github.com/armbian/build/blob/master/config/bootscripts/boot-marvell.cmd
+# eMMC fix
+if test "${BOOT_MEDIA}" = "emmc"; then
+	echo "Applying eMMC compatibility fix to the DT"
+	fdt addr ${fdt_addr}
+	fdt resize
+	fdt rm /soc/internal-regs/sdhci@d8000/ cd-gpios
+	fdt set /soc/internal-regs/sdhci@d8000/ non-removable
+fi
+
 setenv bootargs 'root=${mender_kernel_root} rw rootwait'
 run mender_setup;
 
