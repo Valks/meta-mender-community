@@ -1,6 +1,6 @@
 # https://github.com/armbian/build/blob/master/config/bootscripts/boot-marvell.cmd
 # eMMC fix
-if test "${CLEARFOG_BOOT_MEDIA}" = "emmc"; then
+if test "@@BOOT_MEDIA@@" = "emmc"; then
 	echo "Applying eMMC compatibility fix to the DT"
 	fdt addr ${fdt_addr}
 	fdt resize
