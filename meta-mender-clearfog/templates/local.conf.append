@@ -16,7 +16,7 @@ MACHINE ?= "clearfog"
 # - m.2		(M.2 SSD)
 #
 # Note: Only sdhc and emmc tested, others settings default to sdhc
-BOOT_MEDIA ?= "sdhc"
+BOOT_MEDIA_clearfog ?= "sdhc"
 
 KERNEL_DEVICETREE = "armada-388-clearfog.dtb"
 

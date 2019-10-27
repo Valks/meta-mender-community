@@ -18,3 +18,7 @@ do_provide_clearfog_defines() {
 CLEARFOG_BOOT_MEDIA="${BOOT_MEDIA_clearfog}"
 EOF
 }
+
+python() {
+    bb.build.addtask('do_provide_clearfog_defines', 'do_configure', 'do_patch', d)
+}
