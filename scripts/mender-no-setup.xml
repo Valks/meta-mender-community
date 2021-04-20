@@ -2,9 +2,10 @@
   <manifest>
 
   <remote fetch="https://github.com/mendersoftware" name="mender"/>
+  <remote fetch="https://github.com/Valks" name="valks"/>
 
-  <project name="meta-mender" remote="mender" revision="dunfell" path="sources/meta-mender"/>
-  <project name="meta-mender-community" remote="mender" revision="dunfell" path="sources/meta-mender-community">
+  <project name="meta-mender" remote="valks" revision="dunfell" path="sources/meta-mender"/>
+  <project name="meta-mender-community" remote="valks" revision="dunfell" path="sources/meta-mender-community">
   </project>
 
   </manifest>

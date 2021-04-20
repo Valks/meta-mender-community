@@ -1,17 +1,24 @@
 # Appended fragment from meta-mender-community/meta-mender-clearfog/templates
 
-# Uncomment the lines below depending on the model
-
 # Supported Machine Types:
-# - clearfog-base
-# - clearfog-pro
-MACHINE ?= "clearfog-base"
+# - clearfog
+# - clearfog-gtr-s4
+# - clearfog-gtr-l8
+MACHINE ?= "clearfog"
 
-# Set the storage medium
-# Refer: https://github.com/mirzak/meta-clearfog/blob/master/conf/machine/include/clearfog-common.inc#L8-L18
-UBOOT_BINARY ?= "u-boot-spl-sdhc.kwb"
+# Device boot tartget
+#
+# Options (case-sensitive):
+# - sdhc	(SD Card) (default)
+# - emmc	(eMMC)
+# - spi
+# - uart	(Serial)
+# - m.2		(M.2 SSD)
+#
+# Note: Only sdhc and emmc tested, others settings default to sdhc
+BOOT_MEDIA_clearfog ?= "sdhc"
 
-IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
+KERNEL_DEVICETREE = "armada-388-clearfog.dtb"
 
 MENDER_IMAGE_BOOTLOADER_FILE = "u-boot-${MACHINE}.bin"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "1"
@@ -19,3 +26,11 @@ MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "1"
 MENDER_FEATURES_ENABLE_append = " mender-uboot mender-image-sd"
 MENDER_FEATURES_DISABLE_append = " mender-grub mender-image-uefi"
 
+IMAGE_BOOT_FILES = "zImage ${KERNEL_DEVICETREE} boot.scr"
+
+IMAGE_FSTYPES = "tar.bz2 ext4 wic.gz"
+
+MACHINE_FEATURES = "ext2 ext3 ipsec nfs pci smbfs usbgadget usbhost vfat"
+
+WKS_FILE = "clearfog.wks"
+WKS_FILE_DEPENDS = "virtual/bootloader clearfog-u-boot-scr"
