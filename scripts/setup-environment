@@ -21,6 +21,7 @@ targets=(
     "atmel"
     "beaglebone"
     "clearfog"
+    "coral"
     "intel"
     "nxp"
     "odroid"
@@ -30,6 +31,7 @@ targets=(
     "rockchip"
     "sunxi"
     "tegra"
+    "toradex-nxp"
     "up"
     "variscite")
 

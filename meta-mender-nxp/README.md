@@ -7,6 +7,7 @@ The supported and tested boards are:
  - [WaRP7](https://hub.mender.io/t/nxp-warp7/135)
  - [Pico-Pi i.MX7D](https://hub.mender.io/t/technexion-pico-pi-imx7/136)
  - [Nitrogen8M](https://hub.mender.io/t/boundary-devices-nitrogen8m/409)
+ - [i.MX7D SABRE](https://hub.mender.io/t/nxp-i-mx7d-sabre/1279)
 
 
 Visit the individual board links above for more information on status of the
@@ -19,20 +20,20 @@ This layer depends on:
 
 ```
 URI: https://github.com/Freescale/meta-freescale-3rdparty
-branch: warrior
+branch: zeus
 revision: HEAD
 ```
 
 ```
 URI: https://github.com/Freescale/meta-freescale-distro
-branch: warrior
+branch: zeus
 revision: HEAD
 ```
 
 ```
 URI: https://github.com/boundarydevices/meta-boundary
-branch: master
-revision: 14d7a54464450e50bdd28b6cba505d1263bc1b41
+branch: zeus
+revision: HEAD
 ```
 
 ## Quick start
@@ -45,7 +46,7 @@ that have Mender integrated.
 mkdir mender-nxp && cd mender-nxp
 repo init -u https://github.com/mendersoftware/meta-mender-community \
           -m meta-mender-nxp/scripts/manifest-nxp.xml \
-          -b warrior
+          -b zeus
 repo sync
 source setup-environment nxp
 MACHINE=imx7s-warp bitbake core-image-base

@@ -7,8 +7,10 @@ tegraflash_custom_pre() {
     ln -s ${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.dataimg ./${DATAFILE}
 }
 
-tegraflash_create_flash_config_append() {
-    sed -i \
-        -e"s,DATAFILE,${DATAFILE}," \
-        flash.xml.in
+tegraflash_generate_bupgen_script_append() {
+    sed -i -e"1a sed -i -e'/DATAFILE/d' ./flash.xml.in" $outfile
+}
+
+tegraflash_custom_post_append() {
+    sed -i -e"s,DATAFILE,${DATAFILE}," ${WORKDIR}/tegraflash/flash.xml.in
 }
