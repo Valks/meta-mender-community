@@ -19,4 +19,4 @@ do_post_mender_defines() {
 EOF
 }
 
-addtask do_provide_mender_defines after do_provide_mender_defines before do_configure
+addtask do_post_mender_defines after do_provide_mender_defines before do_configure
