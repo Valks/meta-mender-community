@@ -9,3 +9,14 @@ SRC_URI_append_clearfog = " \
 
 MENDER_BOOTARGS_APPEND ??= ""
 MENDER_BOOTCMD_APPEND ??= ""
+
+do_post_mender_defines() {
+	cat >> ${S}/include/config_mender_defines.h <<EOF
+
+/* Appended configuration */
+#define MENDER_BOOTARGS_APPEND "${MENDER_BOOTARGS_APPEND}"
+#define MENDER_BOOTCMD_APPEND "${MENDER_BOOTCMD_APPEND}"
+EOF
+}
+
+addtask do_provide_mender_defines after do_provide_mender_defines before do_configure
