@@ -1,0 +1,65 @@
+From fc1e98f79a8de0997cc5ba0b7c988787309285a7 Mon Sep 17 00:00:00 2001
+From: MonsoonIQ <monsooniq@davey.com.au>
+Date: Thu, 22 Apr 2021 12:41:46 +1000
+Subject: [PATCH] Changes to allow extra configuration of bootcmd
+
+---
+ include/env_mender.h | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/include/env_mender.h b/include/env_mender.h
+index 261775afd5..c5da9f66ee 100644
+--- a/include/env_mender.h
++++ b/include/env_mender.h
+@@ -26,6 +26,14 @@
+ 
+ #include <config_mender_defines.h>
+ 
++#ifndef MENDER_BOOTARGS_APPEND
++# define MENDER_BOOTARGS_APPEND ""
++#endif
++
++#ifndef MENDER_BOOTCMD_APPEND
++# define MENDER_BOOTCMD_APPEND ""
++#endif
++
+ #ifdef MENDER_NO_DEFAULT_ALTBOOTCMD
+ # define MENDER_DEFAULT_ALTBOOTCMD
+ #else
+@@ -102,6 +110,8 @@
+     "run mender_post_setup_commands; "                                  \
+     "fi\0"                                                              \
+                                                                         \
++    "mender_bootargs_append = " __stringify(MENDER_BOOTARGS_APPEND) "; "               \
++    "mender_bootcmd_append = " __stringify(MENDER_BOOTCMD_APPEND) "; "  \
+     "mender_altbootcmd="                                                \
+     "if test ${mender_boot_part} = " __stringify(MENDER_ROOTFS_PART_A_NUMBER) "; "     \
+     "then "                                                                            \
+@@ -126,7 +136,8 @@
+     "${mtdparts} "                                                      \
+     "ubi.mtd=${mender_mtd_ubi_dev_name} "                               \
+     "rootfstype=ubifs "                                                 \
+-    "${bootargs}; "
++    "${bootargs}; "                                                     \
++    "${mender_bootargs_append}; "
+ # define MENDER_LOAD_KERNEL_AND_FDT                                     \
+     "ubi part ${mender_mtd_ubi_dev_name}; "                             \
+     "ubifsmount ${mender_uboot_root_name}; "                            \
+@@ -136,7 +147,8 @@
+     "ubifsload ${kernel_addr_r} /boot/${mender_kernel_name}; "
+ #else
+ # define MENDER_BOOTARGS                                                \
+-    "setenv bootargs root=${mender_kernel_root} ${bootargs}; "
++    "setenv bootargs root=${mender_kernel_root} ${bootargs}; "          \
++    "${mender_bootargs_append}; "
+ # define MENDER_LOAD_KERNEL_AND_FDT                                     \
+     "if test \"${fdt_addr_r}\" != \"\"; then "                          \
+     "load ${mender_uboot_root} ${fdt_addr_r} /boot/${mender_dtb_name}; " \
+@@ -148,6 +160,7 @@
+     "run mender_setup; "                                                \
+     MENDER_BOOTARGS                                                     \
+     MENDER_LOAD_KERNEL_AND_FDT                                          \
++    "${mender_bootcmd_append}; "                                        \
+     "${mender_boot_kernel_type} ${kernel_addr_r} - ${fdt_addr_r}; "     \
+     "run mender_try_to_recover"
+ 
